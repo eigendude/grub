@@ -168,7 +168,8 @@ grub_real_dprintf (const char *file, const int line, const char *condition,
   if (! debug)
     return;
 
-  if (grub_strword (debug, "all") || grub_strword (debug, condition))
+  if ((grub_strword (debug, "all") || grub_strword (debug, condition)) &&
+      (!grub_strword (debug, "scripting")))
     {
       grub_printf ("%s:%d: ", file, line);
       va_start (args, fmt);
