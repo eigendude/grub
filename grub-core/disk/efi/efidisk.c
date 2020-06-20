@@ -16,6 +16,7 @@
  *  along with GRUB.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#define DEBUG_NAMES
 #include <grub/disk.h>
 #include <grub/partition.h>
 #include <grub/mm.h>
