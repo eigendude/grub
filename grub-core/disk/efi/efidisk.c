@@ -590,10 +590,6 @@ grub_efidisk_read (struct grub_disk *disk, grub_disk_addr_t sector,
 {
   grub_efi_status_t status;
 
-  grub_dprintf ("efidisk",
-		"reading 0x%lx sectors at the sector 0x%llx from %s\n",
-		(unsigned long) size, (unsigned long long) sector, disk->name);
-
   status = grub_efidisk_readwrite (disk, sector, size, buf, 0);
 
   if (status == GRUB_EFI_NO_MEDIA)

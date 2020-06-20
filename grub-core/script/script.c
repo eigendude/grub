@@ -47,7 +47,6 @@ grub_script_malloc (struct grub_parser_param *state, grub_size_t size)
   if (!mem)
     return 0;
 
-  grub_dprintf ("scripting", "malloc %p\n", mem);
   mem->next = state->memused;
   state->memused = mem;
   return (void *) &mem->mem;
@@ -62,7 +61,6 @@ grub_script_mem_free (struct grub_script_mem *mem)
   while (mem)
     {
       memfree = mem->next;
-      grub_dprintf ("scripting", "free %p\n", mem);
       grub_free (mem);
       mem = memfree;
     }
@@ -160,8 +158,6 @@ grub_script_add_arglist (struct grub_parser_param *state,
   struct grub_script_arglist *link;
   struct grub_script_arglist *ll;
 
-  grub_dprintf ("scripting", "arglist\n");
-
   link =
     (struct grub_script_arglist *) grub_script_malloc (state, sizeof (*link));
   if (!link)
@@ -195,8 +191,6 @@ grub_script_create_cmdline (struct grub_parser_param *state,
 {
   struct grub_script_cmdline *cmd;
 
-  grub_dprintf ("scripting", "cmdline\n");
-
   cmd = grub_script_malloc (state, sizeof (*cmd));
   if (!cmd)
     return 0;
@@ -220,8 +214,6 @@ grub_script_create_cmdif (struct grub_parser_param *state,
 {
   struct grub_script_cmdif *cmd;
 
-  grub_dprintf ("scripting", "cmdif\n");
-
   cmd = grub_script_malloc (state, sizeof (*cmd));
   if (!cmd)
     return 0;
@@ -243,8 +235,6 @@ grub_script_create_cmdfor (struct grub_parser_param *state,
 			   struct grub_script_cmd *list)
 {
   struct grub_script_cmdfor *cmd;
-
-  grub_dprintf ("scripting", "cmdfor\n");
 
   cmd = grub_script_malloc (state, sizeof (*cmd));
   if (! cmd)
@@ -290,8 +280,6 @@ grub_script_append_cmd (struct grub_parser_param *state,
 			struct grub_script_cmd *last)
 {
   struct grub_script_cmd *ptr;
-
-  grub_dprintf ("scripting", "append command\n");
 
   if (! last)
     return list;
